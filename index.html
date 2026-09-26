@@ -1,57 +1,58 @@
-// app/page.tsx - આખો કોડ કોપી કરો
-"use client";
-import { useState } from "react";
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MarketZone 2.8v</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+<header class="flex justify-between p-5 border-b border-zinc-800">
+<h1 class="text-2xl font-bold">Market<span class="text-yellow-400">Zone</span> 2.8v 🚀</h1>
+<button id="cartBtn" class="bg-white text-black px-5 py-2 rounded-full font-bold">Cart (0) 🛒</button>
+</header>
 
-export default function MarketZone() {
-  const [cart, setCart] = useState(0);
-  
-  const products = [
-    { id: 1, name: "Wireless Headphone", price: 1499, img: "🎧", oldPrice: 2999 },
-    { id: 2, name: "Smart Watch 2.8v", price: 2499, img: "⌚", oldPrice: 4999 },
-    { id: 3, name: "Gaming Mouse", price: 899, img: "🖱️", oldPrice: 1499 },
-    { id: 4, name: "Mechanical Keyboard", price: 2999, img: "⌨️", oldPrice: 5999 },
-  ];
+<div class="text-center py-12">
+<h2 class="text-4xl font-black">BIGGEST SALE IS LIVE!</h2>
+<p class="text-zinc-400 mt-2">Upto 70% Off</p>
+</div>
 
-  return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="flex justify-between items-center p-5 border-b border-zinc-800 sticky top-0 bg-black/90 backdrop-blur z-10">
-        <h1 className="text-2xl font-bold">Market<span className="text-yellow-400">Zone</span> 2.8v 🚀</h1>
-        <button className="bg-white text-black px-5 py-2 rounded-full font-bold">
-          Cart ({cart}) 🛒
-        </button>
-      </header>
+<div class="grid grid-cols-2 gap-4 p-4 max-w-5xl mx-auto">
+<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
+<div class="text-6xl">🎧</div>
+<h3 class="font-bold mt-3">Wireless Headphone</h3>
+<p class="text-yellow-400 font-bold">₹1499 <span class="line-through text-zinc-500 text-sm">₹2999</span></p>
+<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
+</div>
 
-      {/* Hero */}
-      <div className="text-center py-16 px-5">
-        <h2 className="text-5xl font-black mb-4">BIGGEST SALE IS LIVE!</h2>
-        <p className="text-zinc-400 text-xl">Upto 70% Off on All Products</p>
-      </div>
+<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
+<div class="text-6xl">⌚</div>
+<h3 class="font-bold mt-3">Smart Watch 2.8v</h3>
+<p class="text-yellow-400 font-bold">₹2499 <span class="line-through text-zinc-500 text-sm">₹4999</span></p>
+<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
+</div>
 
-      {/* Products */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-5 p-5 max-w-7xl mx-auto">
-        {products.map((p) => (
-          <div key={p.id} className="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 hover:border-yellow-400 transition-all">
-            <div className="text-7xl text-center mb-4">{p.img}</div>
-            <h3 className="font-bold text-lg">{p.name}</h3>
-            <div className="flex gap-2 items-center my-2">
-              <span className="text-yellow-400 font-bold text-xl">₹{p.price}</span>
-              <span className="line-through text-zinc-500 text-sm">₹{p.oldPrice}</span>
-            </div>
-            <button 
-              onClick={() => setCart(cart + 1)}
-              className="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3 hover:bg-yellow-300"
-            >
-              Add to Cart
-            </button>
-          </div>
-        ))}
-      </div>
+<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
+<div class="text-6xl">🖱️</div>
+<h3 class="font-bold mt-3">Gaming Mouse</h3>
+<p class="text-yellow-400 font-bold">₹899 <span class="line-through text-zinc-500 text-sm">₹1499</span></p>
+<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
+</div>
 
-      {/* Footer */}
-      <footer className="text-center py-10 text-zinc-600 mt-10 border-t border-zinc-900">
-        Made with ❤️ by Zabir Patel - MarketZone 2.8v
-      </footer>
-    </div>
-  );
+<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
+<div class="text-6xl">⌨️</div>
+<h3 class="font-bold mt-3">Keyboard</h3>
+<p class="text-yellow-400 font-bold">₹2999 <span class="line-through text-zinc-500 text-sm">₹5999</span></p>
+<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
+</div>
+</div>
+
+<script>
+let c=0;
+function addCart(){
+c++;
+document.getElementById('cartBtn').innerText='Cart ('+c+') 🛒';
+alert('Added to Cart!');
 }
+</script>
+</body>
+</html>
