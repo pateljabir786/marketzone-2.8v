@@ -1,11 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>MarketZone 2.8v</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body style="background:black;color:white;text-align:center;font-family:Arial;padding-top:50px">
-<h1>MarketZone 2.8v is Live! 🚀</h1>
-<p>Your website is working.</p>
-</body>
-</html>
+// app/page.tsx - આખો કોડ કોપી કરો
+"use client";
+import { useState } from "react";
+
+export default function MarketZone() {
+  const [cart, setCart] = useState(0);
+  
+  const products = [
+    { id: 1, name: "Wireless Headphone", price: 1499, img: "🎧", oldPrice: 2999 },
+    { id: 2, name: "Smart Watch 2.8v", price: 2499, img: "⌚", oldPrice: 4999 },
+    { id: 3, name: "Gaming Mouse", price: 899, img: "🖱️", oldPrice: 1499 },
+    { id: 4, name: "Mechanical Keyboard", price: 2999, img: "⌨️", oldPrice: 5999 },
+  ];
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <header className="flex justify-between items-center p-5 border-b border-zinc-800 sticky top-0 bg-black/90 backdrop-blur z-10">
+        <h1 className="text-2xl font-bold">Market<span className="text-yellow-400">Zone</span> 2.8v 🚀</h1>
+        <button className="bg-white text-black px-5 py-2 rounded-full font-bold">
+          Cart ({cart}) 🛒
+        </button>
+      </header>
+
+      {/* Hero */}
+      <div className="text-center py-16 px-5">
+        <h2 className="text-5xl font-black mb-4">BIGGEST SALE IS LIVE!</h2>
+        <p className="text-zinc-400 text-xl">Upto 70% Off on All Products</p>
+      </div>
+
+      {/* Products */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-5 p-5 max-w-7xl mx-auto">
+        {products.map((p) => (
+          <div key={p.id} className="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 hover:border-yellow-400 transition-all">
+            <div className="text-7xl text-center mb-4">{p.img}</div>
+            <h3 className="font-bold text-lg">{p.name}</h3>
+            <div className="flex gap-2 items-center my-2">
+              <span className="text-yellow-400 font-bold text-xl">₹{p.price}</span>
+              <span className="line-through text-zinc-500 text-sm">₹{p.oldPrice}</span>
+            </div>
+            <button 
+              onClick={() => setCart(cart + 1)}
+              className="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3 hover:bg-yellow-300"
+            >
+              Add to Cart
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <footer className="text-center py-10 text-zinc-600 mt-10 border-t border-zinc-900">
+        Made with ❤️ by Zabir Patel - MarketZone 2.8v
+      </footer>
+    </div>
+  );
+}
