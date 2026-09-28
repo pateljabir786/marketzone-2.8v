@@ -1,57 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MarketZone 2.8v</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white">
-<header class="flex justify-between p-5 border-b border-zinc-800">
-<h1 class="text-2xl font-bold">Market<span class="text-yellow-400">Zone</span> 2.8v 🚀</h1>
-<button id="cartBtn" class="bg-white text-black px-5 py-2 rounded-full font-bold">Cart (0) 🛒</button>
+
+<header class="p-4 flex justify-between items-center border-b border-zinc-800 sticky top-0 bg-black">
+<h1 class="font-bold text-xl">Market<span class="text-yellow-400">Zone</span> 2.8v</h1>
+<p class="bg-zinc-900 px-3 py-1 rounded-full text-xs">🟢 <span id="count">248</span> Joined</p>
 </header>
 
-<div class="text-center py-12">
-<h2 class="text-4xl font-black">BIGGEST SALE IS LIVE!</h2>
-<p class="text-zinc-400 mt-2">Upto 70% Off</p>
+<div class="text-center py-12 px-4">
+<h2 class="text-5xl font-black leading-none">Bharat Nu<br><span class="text-yellow-400">MarketZone</span></h2>
+<p class="text-zinc-400 mt-3">Buyer Seller Direct Market - Amazon Jevu</p>
+<button onclick="joinNow()" class="bg-yellow-400 text-black px-10 py-4 rounded-full font-bold text-lg mt-6">Join Thao - Free Ma</button>
+<p id="msg" class="text-green-400 text-sm mt-3 font-bold">Aaje 248 loko join thai gaya!</p>
 </div>
 
-<div class="grid grid-cols-2 gap-4 p-4 max-w-5xl mx-auto">
-<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
-<div class="text-6xl">🎧</div>
-<h3 class="font-bold mt-3">Wireless Headphone</h3>
-<p class="text-yellow-400 font-bold">₹1499 <span class="line-through text-zinc-500 text-sm">₹2999</span></p>
-<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
-<div class="text-6xl">⌚</div>
-<h3 class="font-bold mt-3">Smart Watch 2.8v</h3>
-<p class="text-yellow-400 font-bold">₹2499 <span class="line-through text-zinc-500 text-sm">₹4999</span></p>
-<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
-<div class="text-6xl">🖱️</div>
-<h3 class="font-bold mt-3">Gaming Mouse</h3>
-<p class="text-yellow-400 font-bold">₹899 <span class="line-through text-zinc-500 text-sm">₹1499</span></p>
-<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
-</div>
-
-<div class="bg-zinc-900 rounded-3xl p-5 border border-zinc-800 text-center">
-<div class="text-6xl">⌨️</div>
-<h3 class="font-bold mt-3">Keyboard</h3>
-<p class="text-yellow-400 font-bold">₹2999 <span class="line-through text-zinc-500 text-sm">₹5999</span></p>
-<button onclick="addCart()" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-full mt-3">Add to Cart</button>
-</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 max-w-6xl mx-auto pb-10">
+<div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800"><div class="text-5xl">📱</div><h3 class="font-bold mt-3">iPhone 13 - 2 Month Old</h3><p class="text-zinc-500 text-xs">Surat - Rahul</p><p class="text-yellow-400 font-black text-xl mt-2">₹42,000</p><button onclick="joinNow()" class="w-full mt-3 bg-white text-black py-3 rounded-full font-bold">Contact Seller</button></div>
+<div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800"><div class="text-5xl">🏍️</div><h3 class="font-bold mt-3">Splendor Bike 2022</h3><p class="text-zinc-500 text-xs">Ahmedabad - Amit</p><p class="text-yellow-400 font-black text-xl mt-2">₹65,000</p><button onclick="joinNow()" class="w-full mt-3 bg-white text-black py-3 rounded-full font-bold">Contact Seller</button></div>
+<div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800"><div class="text-5xl">💻</div><h3 class="font-bold mt-3">Gaming PC Full Setup</h3><p class="text-zinc-500 text-xs">Vadodara - Zabir</p><p class="text-yellow-400 font-black text-xl mt-2">₹35,000</p><button onclick="joinNow()" class="w-full mt-3 bg-white text-black py-3 rounded-full font-bold">Contact Seller</button></div>
 </div>
 
 <script>
-let c=0;
-function addCart(){
+let c=248;
+function joinNow(){
 c++;
-document.getElementById('cartBtn').innerText='Cart ('+c+') 🛒';
-alert('Added to Cart!');
+document.getElementById('count').innerText=c;
+document.getElementById('msg').innerText="Tame Join Thai Gaya! Total: "+c+" 🎉";
+alert("Welcome to MarketZone 2.8v! Tame Join Thai Gaya!");
 }
 </script>
 </body>
