@@ -8,32 +8,77 @@
 </head>
 <body class="bg-black text-white">
 
-<header class="p-4 flex justify-between items-center border-b border-zinc-800 sticky top-0 bg-black">
+<header class="p-4 flex justify-between items-center border-b border-zinc-800 sticky top-0 bg-black z-50">
 <h1 class="font-bold text-xl">Market<span class="text-yellow-400">Zone</span> 2.8v</h1>
-<p class="bg-zinc-900 px-3 py-1 rounded-full text-xs">🟢 <span id="count">248</span> Joined</p>
+<div class="flex gap-2 items-center">
+<p class="bg-zinc-900 px-3 py-1 rounded-full text-xs"><span id="count">248</span> Joined</p>
+<button onclick="openCart()" class="bg-yellow-400 text-black px-4 py-1.5 rounded-full text-sm font-bold">🛒 Cart <span id="cart-count">0</span></button>
+</div>
 </header>
 
 <div class="text-center py-12 px-4">
 <h2 class="text-5xl font-black leading-none">Bharat Nu<br><span class="text-yellow-400">MarketZone</span></h2>
 <p class="text-zinc-400 mt-3">Buyer Seller Direct Market - Amazon Jevu</p>
-<button onclick="joinNow()" class="bg-yellow-400 text-black px-10 py-4 rounded-full font-bold text-lg mt-6">Join Thao - Free Ma</button>
+<button onclick="joinNow()" class="bg-yellow-400 text-black px-10 py-4 rounded-full font-bold text-lg mt-6">Join Now</button>
 <p id="msg" class="text-green-400 text-sm mt-3 font-bold">Aaje 248 loko join thai gaya!</p>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 max-w-6xl mx-auto pb-10">
-<div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800"><div class="text-5xl">📱</div><h3 class="font-bold mt-3">iPhone 13 - 2 Month Old</h3><p class="text-zinc-500 text-xs">Surat - Rahul</p><p class="text-yellow-400 font-black text-xl mt-2">₹42,000</p><button onclick="joinNow()" class="w-full mt-3 bg-white text-black py-3 rounded-full font-bold">Contact Seller</button></div>
-<div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800"><div class="text-5xl">🏍️</div><h3 class="font-bold mt-3">Splendor Bike 2022</h3><p class="text-zinc-500 text-xs">Ahmedabad - Amit</p><p class="text-yellow-400 font-black text-xl mt-2">₹65,000</p><button onclick="joinNow()" class="w-full mt-3 bg-white text-black py-3 rounded-full font-bold">Contact Seller</button></div>
-<div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800"><div class="text-5xl">💻</div><h3 class="font-bold mt-3">Gaming PC Full Setup</h3><p class="text-zinc-500 text-xs">Vadodara - Zabir</p><p class="text-yellow-400 font-black text-xl mt-2">₹35,000</p><button onclick="joinNow()" class="w-full mt-3 bg-white text-black py-3 rounded-full font-bold">Contact Seller</button></div>
+  <div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800">
+    <div class="text-5xl">👕</div>
+    <h3 class="font-bold mt-3 text-lg">Desi T-Shirt</h3>
+    <p class="text-zinc-400 text-sm">Pure Cotton</p>
+    <p class="font-bold mt-2">₹399</p>
+    <button onclick="addToCart('Desi T-Shirt', 399)" class="w-full mt-3 bg-white text-black py-2 rounded-full font-bold">Add to Cart</button>
+  </div>
+  <div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800">
+    <div class="text-5xl">👟</div>
+    <h3 class="font-bold mt-3 text-lg">Bharat Sneaker</h3>
+    <p class="text-zinc-400 text-sm">Comfort Wali</p>
+    <p class="font-bold mt-2">₹1299</p>
+    <button onclick="addToCart('Bharat Sneaker', 1299)" class="w-full mt-3 bg-white text-black py-2 rounded-full font-bold">Add to Cart</button>
+  </div>
+  <div class="bg-zinc-900 p-5 rounded-3xl border border-zinc-800">
+    <div class="text-5xl">🎒</div>
+    <h3 class="font-bold mt-3 text-lg">Market Bag</h3>
+    <p class="text-zinc-400 text-sm">Strong & Stylish</p>
+    <p class="font-bold mt-2">₹599</p>
+    <button onclick="addToCart('Market Bag', 599)" class="w-full mt-3 bg-white text-black py-2 rounded-full font-bold">Add to Cart</button>
+  </div>
+</div>
+
+<div id="cart-drawer" class="fixed inset-0 bg-black/80 hidden z-[60] flex justify-end">
+  <div class="bg-zinc-900 w-full max-w-sm h-full p-6 overflow-auto">
+    <div class="flex justify-between items-center"><h2 class="font-bold text-xl">Tamaru Cart</h2><button onclick="closeCart()" class="text-2xl">✕</button></div>
+    <div id="cart-items" class="mt-6 space-y-3"></div>
+    <p id="cart-total" class="mt-6 font-bold text-lg border-t border-zinc-700 pt-4">Total: ₹0</p>
+    <button onclick="checkout()" class="w-full mt-4 bg-yellow-400 text-black py-3 rounded-full font-bold">Checkout Karo</button>
+  </div>
 </div>
 
 <script>
 let c=248;
-function joinNow(){
-c++;
-document.getElementById('count').innerText=c;
-document.getElementById('msg').innerText="Tame Join Thai Gaya! Total: "+c+" 🎉";
-alert("Welcome to MarketZone 2.8v! Tame Join Thai Gaya!");
+let cart = JSON.parse(localStorage.getItem('mz-cart') || '[]');
+function joinNow(){ c++; document.getElementById('count').innerText=c; document.getElementById('msg').innerText="Tame Join Thai Gaya! Total: "+c+" 🎉"; }
+function updateCartUI(){
+  document.getElementById('cart-count').innerText = cart.length;
+  let total = 0;
+  let html = '';
+  cart.forEach((item, i) => {
+    total += item.price;
+    html += `<div class="flex justify-between bg-zinc-800 p-3 rounded-xl"><span>${item.name} - ₹${item.price}</span><button onclick="removeFromCart(${i})" class="text-red-400">Remove</button></div>`;
+  });
+  if(cart.length==0) html = '<p class="text-zinc-400">Cart khali che</p>';
+  document.getElementById('cart-items').innerHTML = html;
+  document.getElementById('cart-total').innerText = 'Total: ₹' + total;
+  localStorage.setItem('mz-cart', JSON.stringify(cart));
 }
+function addToCart(name, price){ cart.push({name, price}); updateCartUI(); openCart(); }
+function removeFromCart(i){ cart.splice(i,1); updateCartUI(); }
+function openCart(){ document.getElementById('cart-drawer').classList.remove('hidden'); updateCartUI(); }
+function closeCart(){ document.getElementById('cart-drawer').classList.add('hidden'); }
+function checkout(){ if(cart.length==0) return alert('Cart khali che!'); alert('Order Success! Total: ' + document.getElementById('cart-total').innerText); cart=[]; updateCartUI(); closeCart(); }
+updateCartUI();
 </script>
 </body>
 </html>
